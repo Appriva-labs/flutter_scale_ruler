@@ -1,6 +1,6 @@
 # flutter_scale_ruler
 
-A simple scale ruler for filling height in feet and inches and cms.
+A simple scale ruler for adding length in feet and inches and cms.
 
 ## Getting Started
 
