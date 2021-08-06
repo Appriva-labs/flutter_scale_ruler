@@ -117,5 +117,33 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 ```
     
+## Pull Requests
 
+Pull requests are most welcome. It usually will take me within 24-48 hours to respond to any issue or request.
 
+1.  Please keep PR titles easy to read and descriptive of changes, this will make them easier to merge :)
+2.  Pull requests _must_ be made against `develop` branch. Any other branch (unless specified by the maintainers) will get rejected.
+
+### Created & Maintained By
+
+[Boffin Coders Pvt. Ltd.](https://boffincoders.com/)
+
+> If you found this project helpful or you learned something from the source code and want to thank me, consider buying me a cup of :coffee:
+>
+> * [PayPal](https://paypal.me/boffincoders)
+
+# License
+
+    Copyright 2018 Boffin Coders Pvt. Ltd.
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
