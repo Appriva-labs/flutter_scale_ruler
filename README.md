@@ -3,7 +3,7 @@
 A simple scale ruler for adding length in feet and inches and cms.
 ## Screenshots
 
-<img src="gv.gif" height="300em" /> <img src="ss1.png" height="300em" />
+<img src="https://github.com/boffincoders/flutter_scale_ruler/blob/master/gv.gif?raw=true" height="300em" />  <img src="https://github.com/boffincoders/flutter_scale_ruler/blob/master/ss1.png?raw=true"  height="300em" />
 
 ## Usage
 
