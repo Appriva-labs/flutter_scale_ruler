@@ -50,7 +50,7 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
               height: 20.0,
             ),
-            ScaleRuler(
+            ScaleRuler.lengthMeasurement(
               maxValue: 8,
               minValue: 2,
               onChanged: (ScaleValue? scaleValue) {
@@ -63,10 +63,10 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
               height: 20.0,
             ),
-            ScaleRuler(
+            ScaleRuler.lengthMeasurement(
               maxValue: 20,
               minValue: 0,
-              isCMS: true,
+              isFeet: true,
               backgroundColor: Colors.yellow[500],
               sliderActiveColor: Colors.green[500],
               sliderInactiveColor: Colors.greenAccent,

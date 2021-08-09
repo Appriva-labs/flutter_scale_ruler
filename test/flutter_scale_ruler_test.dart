@@ -4,7 +4,7 @@ import 'package:flutter_scale_ruler/flutter_scale_ruler.dart';
 
 void main() {
   test('adds one to input values', () {
-    final ruler = ScaleRuler(
+    final ruler = ScaleRuler.lengthMeasurement(
       maxValue: 8,
       minValue: 2,
       onChanged: (ScaleValue? scaleValue) {
