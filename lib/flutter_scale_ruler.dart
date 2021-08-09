@@ -129,11 +129,11 @@ class _ScaleRulerState extends State<ScaleRuler> {
 
     //set scale text row padding
     int textLength = widget.maxValue.toString().length;
-    if (textLength > 1) {
-      scalePadding = scalePadding - (2 * textLength);
 
-      if (scalePadding < 0) scalePadding = 0.0;
-    }
+    scalePadding = scalePadding - (2 * textLength);
+
+    if (scalePadding < 0) scalePadding = 0.0;
+
   }
 
   Widget getRulerBuild(BuildContext context) {
