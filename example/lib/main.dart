@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_scale_ruler/flutter_scale_ruler.dart';
+
 void main() {
   runApp(MyApp());
 }
@@ -61,14 +62,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 });
                 print("${scaleValue?.feet} Feet ${scaleValue?.inch} inches");
               },
+
             ),
             SizedBox(
               height: 20.0,
             ),
             ScaleRuler.lengthMeasurement(
-              maxValue: 200,
+              maxValue: 80,
               minValue: 2,
-
               backgroundColor: Colors.yellow[500],
               sliderActiveColor: Colors.green[500],
               sliderInactiveColor: Colors.greenAccent,

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'custom_slider_shape.dart';
 
 class ScaleRuler extends StatefulWidget {
-  bool? isFeet; //if cms is true ScaleRuler will return only cms
+  final bool? isFeet; //if cms is true ScaleRuler will return only cms
   final int? maxValue; //maxValue is required
   final int? minValue; //minValue should be less than maxValue
   final Function? onChanged; //function will return ScaleValue
@@ -19,17 +19,17 @@ class ScaleRuler extends StatefulWidget {
 
   ScaleRuler.lengthMeasurement(
       {@required this.maxValue,
-        @required this.minValue,
-        this.onChanged,
-        this.isFeet = false,
-        this.backgroundColor = const Color(0xFF66BB6A),
-        this.sliderActiveColor = const Color(0xFFEF5350),
-        this.sliderInactiveColor = const Color(0xFF9C27B0),
-        this.sliderThumbColor = Colors.green,
-        this.stepIndicatorColor = Colors.black,
-        this.stepIndicatorDividerColor = Colors.black45,
-        this.fontSize = 11,
-        this.textColor = Colors.black}) {
+      @required this.minValue,
+      this.onChanged,
+      this.isFeet = false,
+      this.backgroundColor = const Color(0xFF66BB6A),
+      this.sliderActiveColor = const Color(0xFFEF5350),
+      this.sliderInactiveColor = const Color(0xFF9C27B0),
+      this.sliderThumbColor = Colors.green,
+      this.stepIndicatorColor = Colors.black,
+      this.stepIndicatorDividerColor = Colors.black45,
+      this.fontSize = 11,
+      this.textColor = Colors.black}) {
     rulerType = RulerType.lengthMeasurement;
   }
 
@@ -81,10 +81,10 @@ class _ScaleRulerState extends State<ScaleRuler> {
         if (widget.isFeet!) minValue = widget.minValue! * 12;
         //find slider current position
         double sliderScrollPosition =
-        (sliderSingleStepWidth * (lowerValue.toInt() - minValue));
+            (sliderSingleStepWidth * (lowerValue.toInt() - minValue));
         //find scale current position
         double listCurrentScaleScrollPosition =
-        (scaleItemWidth * (lowerValue.toInt() - minValue));
+            (scaleItemWidth * (lowerValue.toInt() - minValue));
 
         if (isScrolling) {
           //scroll scale according to slider position
@@ -126,14 +126,12 @@ class _ScaleRulerState extends State<ScaleRuler> {
   }
 
   void getScalePadding() {
-
     //set scale text row padding
     int textLength = widget.maxValue.toString().length;
 
     scalePadding = scalePadding - (2 * textLength);
 
     if (scalePadding < 0) scalePadding = 0.0;
-
   }
 
   Widget getRulerBuild(BuildContext context) {
@@ -148,194 +146,194 @@ class _ScaleRulerState extends State<ScaleRuler> {
   Widget heigthMeasureRuler(BuildContext context) {
     return LayoutBuilder(
         builder: (BuildContext context, BoxConstraints constraints) {
-          //max width of scale container
-          screenMaxWidth = constraints.maxWidth - 40;
-          //slider single step width
-          sliderSingleStepWidth = (screenMaxWidth) / (getLength() - 1);
-          if (sliderSingleStepWidth > screenMaxWidth) {
-            sliderSingleStepWidth = screenMaxWidth;
-          }
+      //max width of scale container
+      screenMaxWidth = constraints.maxWidth - 40;
+      //slider single step width
+      sliderSingleStepWidth = (screenMaxWidth) / (getLength() - 1);
+      if (sliderSingleStepWidth > screenMaxWidth) {
+        sliderSingleStepWidth = screenMaxWidth;
+      }
 
-          //set scale item width if maxvalue is more than two digit
-          if (widget.maxValue! > 99)
-            scaleItemWidth = 7.0 * (widget.maxValue!.toString().length);
-          double scaleItemSize = scaleItemWidth * getLength();
+      //set scale item width if maxvalue is more than two digit
+      if (widget.maxValue! > 99)
+        scaleItemWidth = 7.0 * (widget.maxValue!.toString().length);
+      double scaleItemSize = scaleItemWidth * getLength();
 
-          //set scale item width according to screen width
-          if (scaleItemSize < (screenMaxWidth))
-            scaleItemWidth = (screenMaxWidth) / (getLength() - 1);
+      //set scale item width according to screen width
+      if (scaleItemSize < (screenMaxWidth))
+        scaleItemWidth = (screenMaxWidth) / (getLength() - 1);
 
-          // check to make scale scrollable or not
-          if ((scaleItemWidth) * (getLength() - 1) > (screenMaxWidth)) {
-            isScrolling = true;
-          } else {
-            isScrolling = false;
-          }
+      // check to make scale scrollable or not
+      if ((scaleItemWidth) * (getLength() - 1) > (screenMaxWidth)) {
+        isScrolling = true;
+      } else {
+        isScrolling = false;
+      }
 
-          return Container(
-            alignment: Alignment.bottomCenter,
-            padding: EdgeInsets.symmetric(vertical: 20.0),
+      return Container(
+        alignment: Alignment.bottomCenter,
+        padding: EdgeInsets.symmetric(vertical: 20.0),
 
-            height: 120,
-            width: screenMaxWidth + 40.0,
-            // padding: EdgeInsets.all(8.0),
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(8.0),
-                color: widget.backgroundColor!),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                Container(
-                  width: screenMaxWidth + 40,
-                  padding: EdgeInsets.symmetric(horizontal: 20.0),
-                  child: SizedBox(
-                    child: SliderTheme(
-                      data: SliderTheme.of(context).copyWith(
-                        thumbColor: widget.sliderThumbColor,
-                        trackShape: CustomTrackShape(),
-                      ),
-                      child: MediaQuery.removePadding(
-                        context: context,
-                        removeRight: true,
-                        removeLeft: true,
-                        child: Slider(
-                          value: (widget.isFeet!)
-                              ? ((scaleValue!.feet!.toDouble() * 12) +
+        height: 120,
+        width: screenMaxWidth + 40.0,
+        // padding: EdgeInsets.all(8.0),
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8.0),
+            color: widget.backgroundColor!),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            Container(
+              width: screenMaxWidth + 40,
+              padding: EdgeInsets.symmetric(horizontal: 20.0),
+              child: SizedBox(
+                child: SliderTheme(
+                  data: SliderTheme.of(context).copyWith(
+                    thumbColor: widget.sliderThumbColor,
+                    trackShape: CustomTrackShape(),
+                  ),
+                  child: MediaQuery.removePadding(
+                    context: context,
+                    removeRight: true,
+                    removeLeft: true,
+                    child: Slider(
+                      value: (widget.isFeet!)
+                          ? ((scaleValue!.feet!.toDouble() * 12) +
                               scaleValue!.inch!)
-                              : scaleValue!.cms!.toDouble(),
-                          min: (widget.isFeet!)
-                              ? (widget.minValue! * 12)
-                              : widget.minValue!.toDouble(),
-                          max: (widget.isFeet!)
-                              ? (widget.maxValue! * 12)
-                              : widget.maxValue!.toDouble(),
-                          activeColor: widget.sliderActiveColor,
-                          inactiveColor: widget.sliderInactiveColor,
-                          label: '${scaleValue!.cms!}',
-                          onChanged: (value) {
-                            onDragging(value);
-                          },
-                        ),
-                      ),
+                          : scaleValue!.cms!.toDouble(),
+                      min: (widget.isFeet!)
+                          ? (widget.minValue! * 12)
+                          : widget.minValue!.toDouble(),
+                      max: (widget.isFeet!)
+                          ? (widget.maxValue! * 12)
+                          : widget.maxValue!.toDouble(),
+                      activeColor: widget.sliderActiveColor,
+                      inactiveColor: widget.sliderInactiveColor,
+                      label: '${scaleValue!.cms!}',
+                      onChanged: (value) {
+                        onDragging(value);
+                      },
                     ),
                   ),
                 ),
-                Container(
-                  width: screenMaxWidth + 40,
-                  padding: EdgeInsets.only(left: 20.0, right: 2.0),
-                  height: 15,
-                  child: Center(
-                    child: MediaQuery.removePadding(
-                      context: context,
-                      removeBottom: true,
-                      removeLeft: true,
-                      removeRight: true,
-                      child: ListView.builder(
-                          itemCount: (getLength() + 1),
-                          controller: scrollController,
-                          physics: NeverScrollableScrollPhysics(),
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context1, index) {
-                            // return scale steps
-                            return index == getLength()
-                                ? SizedBox()
-                                : Container(
-                              width: scaleItemWidth,
-                              alignment: Alignment.bottomLeft,
-                              child: SizedBox(
-                                child: Align(
-                                  alignment: Alignment.centerLeft,
-                                  child: Container(
-                                    height: (index % scaleStepLimit!) == 0
-                                        ? 15.0
-                                        : 10.0,
-                                    width: 2,
-                                    color: (index % scaleStepLimit!) == 0
-                                        ? widget.stepIndicatorColor
-                                        : widget.stepIndicatorDividerColor,
+              ),
+            ),
+            Container(
+              width: screenMaxWidth + 40,
+              padding: EdgeInsets.only(left: 20.0, right: 2.0),
+              height: 15,
+              child: Center(
+                child: MediaQuery.removePadding(
+                  context: context,
+                  removeBottom: true,
+                  removeLeft: true,
+                  removeRight: true,
+                  child: ListView.builder(
+                      itemCount: (getLength() + 1),
+                      controller: scrollController,
+                      physics: NeverScrollableScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context1, index) {
+                        // return scale steps
+                        return index == getLength()
+                            ? SizedBox()
+                            : Container(
+                                width: scaleItemWidth,
+                                alignment: Alignment.bottomLeft,
+                                child: SizedBox(
+                                  child: Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Container(
+                                      height: (index % scaleStepLimit!) == 0
+                                          ? 15.0
+                                          : 10.0,
+                                      width: 2,
+                                      color: (index % scaleStepLimit!) == 0
+                                          ? widget.stepIndicatorColor
+                                          : widget.stepIndicatorDividerColor,
+                                    ),
                                   ),
                                 ),
-                              ),
-                            );
-                          }),
-                    ),
-                  ),
+                              );
+                      }),
                 ),
-                Container(
-                  width: screenMaxWidth + 40,
-                  padding: EdgeInsets.only(left: scalePadding, right: 2.0),
-                  height: 15,
-                  child: Center(
-                    child: MediaQuery.removePadding(
-                      context: context,
-                      removeBottom: true,
-                      removeLeft: true,
-                      removeRight: true,
-                      child: ListView.builder(
-                          itemCount: (getLength() + 1),
-                          controller: scrollController,
-                          physics: NeverScrollableScrollPhysics(),
-                          scrollDirection: Axis.horizontal,
-                          itemBuilder: (context1, index) {
-                            String scaleText;
-                            //return scale text for cms or feet
-                            if (widget.isFeet!) {
-                              scaleText = ((index + widget.minValue! * 12) / 12)
-                                  .truncate()
-                                  .toString();
-                            } else
-                              scaleText = (index + widget.minValue!).toString();
-
-                            // find text padding to align text in center
-                            double? textPadding = 0.0;
-                            if (scalePadding < 20) {
-                              double padding = 2 * (scaleText.length.toDouble());
-                              if (scalePadding + padding != 20)
-                                textPadding = 20 - (scalePadding + padding);
-                            }
-
-                            return index == getLength()
-                                ? SizedBox(
-                              width: scaleItemWidth,
-                            )
-                                : Container(
-                              width: scaleItemWidth,
-                              padding: EdgeInsets.only(left: textPadding),
-                              alignment: Alignment.bottomLeft,
-                              child: Align(
-                                alignment: Alignment.centerLeft,
-                                child: Column(
-                                  crossAxisAlignment:
-                                  CrossAxisAlignment.center,
-                                  //mainAxisSize: MainAxisSize.min,
-                                  mainAxisAlignment: MainAxisAlignment.end,
-                                  children: [
-                                    Align(
-                                      alignment: Alignment.centerLeft,
-                                      child: Text(
-                                        (index % scaleStepLimit!) == 0
-                                            ? scaleText
-                                            : "",
-                                        overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(
-                                            fontSize: widget.fontSize,
-                                            letterSpacing: 1.0,
-                                            color: widget.textColor),
-                                      ),
-                                    )
-                                  ],
-                                ),
-                              ),
-                            );
-                          }),
-                    ),
-                  ),
-                ),
-              ],
+              ),
             ),
-          );
-        });
+            Container(
+              width: screenMaxWidth + 40,
+              padding: EdgeInsets.only(left: scalePadding, right: 2.0),
+              height: 15,
+              child: Center(
+                child: MediaQuery.removePadding(
+                  context: context,
+                  removeBottom: true,
+                  removeLeft: true,
+                  removeRight: true,
+                  child: ListView.builder(
+                      itemCount: (getLength() + 1),
+                      controller: scrollController,
+                      physics: NeverScrollableScrollPhysics(),
+                      scrollDirection: Axis.horizontal,
+                      itemBuilder: (context1, index) {
+                        String scaleText;
+                        //return scale text for cms or feet
+                        if (widget.isFeet!) {
+                          scaleText = ((index + widget.minValue! * 12) / 12)
+                              .truncate()
+                              .toString();
+                        } else
+                          scaleText = (index + widget.minValue!).toString();
+
+                        // find text padding to align text in center
+                        double? textPadding = 0.0;
+                        if (scalePadding < 20) {
+                          double padding = 2 * (scaleText.length.toDouble());
+                          if (scalePadding + padding != 20)
+                            textPadding = 20 - (scalePadding + padding);
+                        }
+
+                        return index == getLength()
+                            ? SizedBox(
+                                width: scaleItemWidth,
+                              )
+                            : Container(
+                                width: scaleItemWidth,
+                                padding: EdgeInsets.only(left: textPadding),
+                                alignment: Alignment.bottomLeft,
+                                child: Align(
+                                  alignment: Alignment.centerLeft,
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    //mainAxisSize: MainAxisSize.min,
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Align(
+                                        alignment: Alignment.centerLeft,
+                                        child: Text(
+                                          (index % scaleStepLimit!) == 0
+                                              ? scaleText
+                                              : "",
+                                          overflow: TextOverflow.ellipsis,
+                                          style: TextStyle(
+                                              fontSize: widget.fontSize,
+                                              letterSpacing: 1.0,
+                                              color: widget.textColor),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              );
+                      }),
+                ),
+              ),
+            ),
+          ],
+        ),
+      );
+    });
   }
 }
 
