@@ -25,7 +25,6 @@ To use this package :
 ```dart
 import 'package:flutter/material.dart';
 import 'package:flutter_scale_ruler/flutter_scale_ruler.dart';
-
 void main() {
   runApp(MyApp());
 }
@@ -75,9 +74,12 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
               height: 20.0,
             ),
-            ScaleRuler(
+            ScaleRuler.lengthMeasurement(
               maxValue: 8,
               minValue: 2,
+              isFeet: true,
+              stepIndicatorColor: Colors.brown,
+              stepIndicatorDividerColor: Colors.blue,
               onChanged: (ScaleValue? scaleValue) {
                 setState(() {
                   _scaleValue = scaleValue;
@@ -88,10 +90,10 @@ class _MyHomePageState extends State<MyHomePage> {
             SizedBox(
               height: 20.0,
             ),
-            ScaleRuler(
-              maxValue: 20,
-              minValue: 0,
-              isCMS: true,
+            ScaleRuler.lengthMeasurement(
+              maxValue: 200,
+              minValue: 2,
+
               backgroundColor: Colors.yellow[500],
               sliderActiveColor: Colors.green[500],
               sliderInactiveColor: Colors.greenAccent,
