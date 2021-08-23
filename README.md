@@ -1,6 +1,6 @@
 # flutter_scale_ruler
 
-A simple scale ruler for adding length in feet and inches and cms.
+A simple scale ruler for adding length in feet and inches and cms ([pub.dev](https://pub.dev/packages/flutter_scale_ruler)).
 ## Screenshots
 
 <img src="https://github.com/boffincoders/flutter_scale_ruler/blob/master/gv.gif?raw=true" height="300em" />  <img src="https://github.com/boffincoders/flutter_scale_ruler/blob/master/ss1.png?raw=true"  height="300em" />
