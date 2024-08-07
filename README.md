@@ -3,7 +3,7 @@
 A simple scale ruler for adding length in feet and inches and cms ([pub.dev](https://pub.dev/packages/flutter_scale_ruler)).
 ## Screenshots
 
-<img src="https://github.com/boffincoders/flutter_scale_ruler/blob/master/gv.gif?raw=true" height="300em" />  <img src="https://github.com/boffincoders/flutter_scale_ruler/blob/master/ss1.png?raw=true"  height="300em" />
+<img src="https://github.com/boffincoders/flutter_scale_ruler/blob/master/gv.gif?raw=true" height="300em" />  <img src="https://github.com/boffincoders/flutter_scale_ruler/blob/master/ss1.jpg?raw=true"  height="300em" />
 
 ## Usage
 
@@ -25,11 +25,14 @@ To use this package :
 ```dart
 import 'package:flutter/material.dart';
 import 'package:flutter_scale_ruler/flutter_scale_ruler.dart';
+
 void main() {
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -37,18 +40,18 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Flutter Scale Ruler'),
+      home: const MyHomePage(title: 'Flutter Scale Ruler'),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
   @override
-  _MyHomePageState createState() => _MyHomePageState();
+  State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
@@ -61,57 +64,61 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              "${_scaleValue?.feet ?? "0"} Feet ${_scaleValue?.inch ?? "0"} inches",
-              style: TextStyle(fontSize: 18.0),
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            ScaleRuler.lengthMeasurement(
-              maxValue: 8,
-              minValue: 2,
-              isFeet: true,
-              stepIndicatorColor: Colors.brown,
-              stepIndicatorDividerColor: Colors.blue,
-              onChanged: (ScaleValue? scaleValue) {
-                setState(() {
-                  _scaleValue = scaleValue;
-                });
-                print("${scaleValue?.feet} Feet ${scaleValue?.inch} inches");
-              },
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            ScaleRuler.lengthMeasurement(
-              maxValue: 200,
-              minValue: 2,
-
-              backgroundColor: Colors.yellow[500],
-              sliderActiveColor: Colors.green[500],
-              sliderInactiveColor: Colors.greenAccent,
-              onChanged: (ScaleValue? scaleValue) {
-                setState(() {
-                  _scaleValueCms = scaleValue;
-                });
-                print("${scaleValue?.cms} cms");
-              },
-            ),
-            SizedBox(
-              height: 20.0,
-            ),
-            Text(
-              "${_scaleValueCms?.cms ?? "0"} cms",
-              style: TextStyle(fontSize: 18.0),
-            ),
-          ],
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                "${_scaleValue?.feet ?? "0"} Feet ${_scaleValue?.inch ?? "0"} inches",
+                style: const TextStyle(fontSize: 18.0),
+              ),
+              const SizedBox(height: 20.0),
+              ScaleRuler.lengthMeasurement(
+                maxValue: 8,
+                minValue: 0,
+                initialValue: 4,
+                isFeet: true,
+                axis: Axis.vertical,
+                stepIndicatorColor: Colors.brown,
+                stepIndicatorDividerColor: Colors.blue,
+                onChanged: (ScaleValue? scaleValue) {
+                  if (mounted) {
+                    setState(() {
+                      _scaleValue = scaleValue;
+                    });
+                    debugPrint(
+                        "${scaleValue?.feet} Feet ${scaleValue?.inch} inches");
+                  }
+                },
+              ),
+              const SizedBox(height: 20.0),
+              ScaleRuler.lengthMeasurement(
+                maxValue: 80,
+                minValue: 0,
+                initialValue: 40,
+                axis: Axis.horizontal,
+                backgroundColor: Colors.yellow[500]!,
+                sliderActiveColor: Colors.green[500]!,
+                sliderInactiveColor: Colors.greenAccent,
+                onChanged: (ScaleValue? scaleValue) {
+                  if (mounted) {
+                    setState(() {
+                      _scaleValueCms = scaleValue;
+                    });
+                    debugPrint("${scaleValue?.cms} cms");
+                  }
+                },
+              ),
+              const SizedBox(height: 20.0),
+              Text(
+                "${_scaleValueCms?.cms ?? "0"} cms",
+                style: const TextStyle(fontSize: 18.0),
+              ),
+            ],
+          ),
         ),
       ),
     );

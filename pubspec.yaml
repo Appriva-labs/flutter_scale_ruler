@@ -1,10 +1,10 @@
 name: flutter_scale_ruler
 description: A simple scale ruler for adding length in feet and inches and cms.
-version: 0.0.3
+version: 0.0.4
 homepage: https://github.com/boffincoders/flutter_scale_ruler
 
 environment:
-  sdk: ">=2.12.0 <3.0.0"
+  sdk: '>=2.12.0 <4.0.0'
   flutter: ">=1.17.0"
 
 dependencies:
@@ -14,6 +14,8 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+
+  flutter_lints: ^4.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
