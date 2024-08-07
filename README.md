@@ -7,7 +7,7 @@ A simple scale ruler for adding length in feet and inches and cms ([pub.dev](htt
 
 ## Usage
 
-[Example](https://github.com/boffincoders/flutter_scale_ruler/blob/master/example/example.dart)
+[Example](https://github.com/Appriva-labs/flutter_scale_ruler/blob/master/example/lib/main.dart)
 
 To use this package :
 
